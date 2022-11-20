@@ -27,3 +27,8 @@ def addOrder(request):
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
+@api_view(['GET'])
+def orderDetail(request,pk):
+    order=Order.objects.get(id=pk)
+    serializer=OrderSerializer(order)
+    return Response(serializer.data)
